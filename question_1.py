@@ -50,9 +50,53 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].  """
 "#Solution"
 
 
+# pseudo code
+
+'''
+DEFINE A METHOD(S):
+  DICTIONARY OF ROMAN
+  INITIALIZE TOTAL
+  LOOP THRO THE DICTIONARY 
+    IF 
+
+
+'''
+     
+
 def romanToInt(s):
-        """
-        :type s: str
-        :rtype: int
-        """
+     roman_num ={
+        'I':1,
+        'V':5,
+        'X':10,
+        'L':50,
+        'C':100,
+        'D': 500,
+        'M': 1000
+     }
+
+
+     i=0
+     total = 0
+
+     while i < len(s):
+        if i + 1 < len(s) and roman_num[s[i]] > roman_num[s[i+1]]:
+           total += roman_num[s[i+1]] - roman_num[s[i]]
+        else:
+           total += roman_num[s[i]]
+           i +=1
+
+     return total
+
+
+print(romanToInt("III"))      
+print(romanToInt("IV"))
+
         
+           
+        
+           
+
+
+
+
+ 

@@ -16,4 +16,29 @@ You are asked to define function least_bribes(bribes) that takes as argument an 
 
 
 def least_bribes(bribes):
-    return 0
+    n =len(bribes)
+
+    dp = [[None] * n  for _ in range(n)]
+
+
+    def dfs(left,right):
+        if left > right:
+            return 0
+        if dp[left][right] is not None:
+            return dp[left][right]
+
+        min_cost = float('inf')
+
+        for k in range(left,right+1):
+            cost = bribes[k] + max(dfs(left,k-1),dfs(k+1,right))
+            min_cost =min(min_cost,cost)
+
+        dp[left][right] = min_cost  
+        return min_cost
+
+    return dfs(0,n-1)
+
+bribes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print(least_bribes(bribes))
+
+
